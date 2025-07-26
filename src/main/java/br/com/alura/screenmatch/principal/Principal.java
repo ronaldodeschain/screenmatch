@@ -60,12 +60,28 @@ public class Principal {
                 .flatMap(t -> t.episodios().stream())
                 .collect(Collectors.toList());
 
-        System.out.println("\nTop 5 episódios");
+        System.out.println("\nTop 10 episódios");
         dadosEpisodios.stream()
-                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A"))
+                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A "))
+                //peek operação intermediária que permite ver o retorno da linha acima
+                //.peek(e -> System.out.println("Primeiro Filtro(N/A) " + e))
                 .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed())
-                .limit(5)
+                //.peek(e -> System.out.println("Ordenação " + e))
+                .limit(10)
+                //.peek(e -> System.out.println("Limite: " + e))
+                .map(e -> e.titulo().toUpperCase())
+                //.peek((e -> System.out.println("Mapeamento " + e)))
                 .forEach(System.out::println);
+
+//        List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5);
+//
+//        int soma = numeros.stream()
+//                .peek(n -> System.out.println("Elemento: " + n))
+//                .map(n -> n * 2)
+//                .peek(n -> System.out.println("Conteúdo depois do map: " + n))
+//                .reduce(0, (total, numero) -> total + numero);
+//
+//        System.out.println("A soma dos números é: " + soma);
 
         List<Episodio> episodios = listaTemporada.stream()
                 .flatMap(t -> t.episodios().stream()
@@ -73,6 +89,20 @@ public class Principal {
                 ).collect(Collectors.toList());
 
         episodios.forEach(System.out::println);
+
+        //criando um find first
+        System.out.println("Que titulo você está procurando? ");
+        var trechoTitulo = leitura.nextLine();
+        Optional<Episodio> episodioBuscado = episodios.stream()
+                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
+                .findFirst();
+        if (episodioBuscado.isPresent()){
+            System.out.println("Episodio encontrado!");
+            System.out.println("Episodio: " + episodioBuscado.get().getTitulo());
+            System.out.println("Temporada: " + episodioBuscado.get().getTemporada());
+        }else{
+            System.out.println("Não pegamos a sua referência!");
+        }
 
         System.out.println("Selecione um ano para listar os episódios: ");
         var ano = leitura.nextInt();
@@ -91,5 +121,20 @@ public class Principal {
                                 " Episodio: " + e.getTitulo() +
                                 " Data de Lançamento: " + e.getDataLancamento().format(dtf)
                 ));
+
+//        Map<Integer,Double> avaliacoesPorTemporada = episodios.stream()
+//                .filter(e -> e.getAvaliacao() > 0.0)
+//                .collect(Collectors.groupingBy(Episodio::getTemporada,
+//                        Collectors.averagingDouble(Episodio::getAvaliacao)));
+//        System.out.println("Avaliações por temporada: ");
+//        System.out.println(avaliacoesPorTemporada);
+
+        DoubleSummaryStatistics est = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0)
+                .collect(Collectors.summarizingDouble(Episodio::getAvaliacao));
+        System.out.println("Média: " + est.getAverage());
+        System.out.println("Melhor Nota: " + est.getMax());
+        System.out.println("Pior Nota: " + est.getMin());
+        System.out.println("Total de episodios: " + est.getCount());
     }
 }
