@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
-
 	@Autowired
 	private SerieRepository repositorio;
 
@@ -21,8 +20,5 @@ public class ScreenmatchApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Principal principal = new Principal(repositorio);
 		principal.exibeMenu();
-
 	}
-
-
 }
