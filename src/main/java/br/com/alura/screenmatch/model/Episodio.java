@@ -17,7 +17,7 @@ public class Episodio {
     private Double avaliacao;
     private LocalDate dataLancamento;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Serie serie;
 
     public  Episodio(){}
