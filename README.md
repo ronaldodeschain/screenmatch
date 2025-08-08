@@ -1,16 +1,27 @@
-![thumbnail-Formação Java](https://github.com/jacqueline-oliveira/3356-java-screenmatch-web/assets/66698429/d1e7755b-0a61-411f-bb99-9fcfda44f00c)
+![thumbnail-Formação Java](https://github.com/jacqueline-oliveira/3356-java-web-front/assets/66698429/7bd89d79-1385-4f62-adea-d4a27e79f728)
 
-# Java: criando sua primeira API e conectando ao front
+# Front-end da aplicação ScreenMatch
 
-Projeto desenvolvido no terceiro curso da formação Avançando com Java da Alura
+Essa é a aplicação Front-end que será utilizada no curso.
+
+Foi desenvolvida pela [Monica Hillman](https://cursos.alura.com.br/user/monicahillman)
+
+Para visualizar a mesma, após o download ou clone do projeto, abra-a com o VS Code
+
+Caso não possua, instale a extensão *Live Server*.
+
+Feito isso, clique com o botão direito no arquivo **index.html** e escolha "Open with Live Server".
+
+A princípio, caso a sua API ainda não esteja desenvolvida, o conteúdo que você verá será esse abaixo:
+
+![image](https://github.com/jacqueline-oliveira/3356-java-web-front/assets/66698429/b059bf8b-df40-4a51-8a27-9d1058305955)
 
 
-## 🔨 Objetivos do projeto
+Após a finalização do curso, seu projeto estará completo, já com as séries cadastradas e a API com as rotas prontas. Sendo assim, a aplicação irá mostrar os dados, de forma similar à abaixo:
 
-- Atualizar o projeto ScreenMatch, criado inicialmente com linha de comando, para se transformar em uma API REST;
-- Entender a estrutura MVC no desenvolvimento de aplicações Web;
-- Criar e mapear rotas utilizando as anotações do Spring;
-- Utilizar boas práticas e entender o conceito de DTO (Data Transfer Object); 
-- Conectar dados disponibilizados pelo back-end à uma aplicação front-end, disponibilizada nesse [link](https://github.com/jacqueline-oliveira/3356-java-web-front) 
-- Tratar erros de CORS na disponibilização de dados;
-- Fornecer uma experiência fullstack, demonstrando o fluxo ponta a ponta da aplicação.
+
+![image](https://github.com/jacqueline-oliveira/3356-java-web-front/assets/66698429/00670340-c0fd-4035-b01a-af25aeff28a0)
+
+
+
+# Bons estudos!

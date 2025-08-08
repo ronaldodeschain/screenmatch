@@ -1,18 +1,39 @@
 package br.com.alura.screenmatch.service;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import com.google.genai.Client;
+import com.google.genai.types.GenerateContentResponse;
+
+import dev.langchain4j.data.message.ChatMessage;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 
 public class ConsultaGemini {
 
     public static String obterTraducao(String texto) {
 
-        ChatLanguageModel gemini = GoogleAiGeminiChatModel.builder()
-                .apiKey(System.getenv("GEMENI_APIKEY"))
-                .modelName("gemini-1.5-flash")
-                .build();
+            Client client = Client.builder().apiKey(System.getenv("GEMENI_APIKEY"))
+                    .build();;
 
-        String response = gemini.generate("Traduza para português o texto: " + texto);
-        return response;
+            GenerateContentResponse response =  client.models.
+                    generateContent("gemini-2.0-flash",
+                            "Traduza para o português o texto: " + texto,
+                            null);
+
+            return response.text();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
